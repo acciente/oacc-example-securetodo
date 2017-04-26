@@ -1,0 +1,74 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+         http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="oacc-init" id="oaccdb-2.1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <insert schemaName="OACC" tableName="OAC_DOMAIN">
+            <column name="DOMAINID" valueNumeric="0"/>
+            <column name="DOMAINNAME" value="SYSDOMAIN"/>
+            <column name="PARENTDOMAINID"/>
+        </insert>
+
+        <insert schemaName="OACC" tableName="OAC_RESOURCECLASS">
+            <column name="RESOURCECLASSID" valueNumeric="0"/>
+            <column name="RESOURCECLASSNAME" value="SYSOBJECT"/>
+            <column name="ISAUTHENTICATABLE" valueNumeric="1"/>
+            <column name="ISUNAUTHENTICATEDCREATEALLOWED" valueNumeric="0"/>
+        </insert>
+
+        <insert schemaName="OACC" tableName="OAC_RESOURCE">
+            <column name="RESOURCEID" valueNumeric="0"/>
+            <column name="RESOURCECLASSID" valueNumeric="0"/>
+            <column name="DOMAINID" valueNumeric="0"/>
+        </insert>
+
+        <insert schemaName="OACC" tableName="OAC_RESOURCEPASSWORD">
+            <column name="RESOURCEID" valueNumeric="0"/>
+            <column name="PASSWORD" value="vsZvKFBTbE58B+HiKQ4Z5BmCn2LbD2stbRLW1YYVfsbdU++QKyopTqOlJFXxAH3J"/>
+        </insert>
+
+        <insert schemaName="OACC" tableName="OAC_GRANT_DOMCRPERM_POSTCR_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="POSTCREATESYSPERMISSIONID" valueNumeric="-303"/>
+            <column name="POSTCREATEISWITHGRANT" valueNumeric="1"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+        <insert schemaName="OACC" tableName="OAC_GRANT_DOMCRPERM_POSTCR_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="POSTCREATESYSPERMISSIONID" valueNumeric="-302"/>
+            <column name="POSTCREATEISWITHGRANT" valueNumeric="1"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+        <insert schemaName="OACC" tableName="OAC_GRANT_DOMCRPERM_POSTCR_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="POSTCREATESYSPERMISSIONID" valueNumeric="-301"/>
+            <column name="POSTCREATEISWITHGRANT" valueNumeric="1"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+
+        <insert schemaName="OACC" tableName="OAC_GRANT_DOMCRPERM_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="SYSPERMISSIONID" valueNumeric="-300"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+
+        <insert schemaName="OACC" tableName="OAC_GRANT_DOMPERM_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="0"/>
+            <column name="SYSPERMISSIONID" valueNumeric="-301"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

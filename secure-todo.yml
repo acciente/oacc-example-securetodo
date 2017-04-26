@@ -1,0 +1,75 @@
+# ----------------
+# Database settings
+# ----------------
+oaccDb:
+  # the name of your JDBC driver
+  driverClass: org.hsqldb.jdbc.JDBCDriver
+
+  # the username
+  user: oaccuser
+
+  # the password
+  password: oaccpwd
+
+  # the JDBC URL
+  url: jdbc:hsqldb:mem:oaccdb
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SYSTEM_TABLES"
+
+todoDb:
+  # the name of your JDBC driver
+  driverClass: org.hsqldb.jdbc.JDBCDriver
+
+  # the username
+  user: todouser
+
+  # the password
+  password: todopwd
+
+  # the JDBC URL
+  url: jdbc:hsqldb:mem:tododb
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SYSTEM_TABLES"
+
+# ----------------
+# OACC settings
+# ----------------
+oacc:
+  schemaName: OACC
+  sqlProfile: HSQLDB_2_3_NON_RECURSIVE
+
+# ----------------
+# Server connection settings
+# ----------------
+server:
+  applicationConnectors:
+#    - type: http
+#      port: 8080
+    - type: https
+      port: 8443
+      keyStorePath: secure-todo.keystore
+      keyStorePassword: secure-todo.keystorePwd
+  adminConnectors:
+#    - type: http
+#      port: 8081
+    - type: https
+      port: 8444
+      keyStorePath: secure-todo.keystore
+      keyStorePassword: secure-todo.keystorePwd
+
+# ----------------
+# Logging settings
+# ----------------
+logging:
+
+  # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+  level: INFO
+
+  # Logger-specific levels.
+  loggers:
+    # Sets the level for liquibase-specific logger to WARN, to remove the migrations output during initialization.
+    liquibase: WARN
+    # Sets the level for authentication-specific logger to DEBUG.
+    oaccBasicAuth: DEBUG

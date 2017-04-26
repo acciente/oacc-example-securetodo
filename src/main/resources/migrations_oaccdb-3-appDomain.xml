@@ -1,0 +1,178 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+         http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="secure-todo-init" id="oaccdb-3.1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_DOMAIN">
+            <column name="DOMAINID" valueNumeric="1"/>
+            <column name="DOMAINNAME" value="secure-todo"/>
+            <column name="PARENTDOMAINID"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCECLASS">
+            <column name="RESOURCECLASSID" valueNumeric="1"/>
+            <column name="RESOURCECLASSNAME" value="user"/>
+            <column name="ISAUTHENTICATABLE" valueNumeric="1"/>
+            <column name="ISUNAUTHENTICATEDCREATEALLOWED" valueNumeric="1"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCECLASS">
+            <column name="RESOURCECLASSID" valueNumeric="2"/>
+            <column name="RESOURCECLASSNAME" value="role"/>
+            <column name="ISAUTHENTICATABLE" valueNumeric="0"/>
+            <column name="ISUNAUTHENTICATEDCREATEALLOWED" valueNumeric="0"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCECLASS">
+            <column name="RESOURCECLASSID" valueNumeric="3"/>
+            <column name="RESOURCECLASSNAME" value="role-helper"/>
+            <column name="ISAUTHENTICATABLE" valueNumeric="1"/>
+            <column name="ISUNAUTHENTICATEDCREATEALLOWED" valueNumeric="0"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCECLASS">
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="RESOURCECLASSNAME" value="todo"/>
+            <column name="ISAUTHENTICATABLE" valueNumeric="0"/>
+            <column name="ISUNAUTHENTICATEDCREATEALLOWED" valueNumeric="0"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCECLASSPERMISSION">
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="PERMISSIONID" valueNumeric="1"/>
+            <column name="PERMISSIONNAME" value="VIEW"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCECLASSPERMISSION">
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="PERMISSIONID" valueNumeric="2"/>
+            <column name="PERMISSIONNAME" value="EDIT"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCECLASSPERMISSION">
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="PERMISSIONID" valueNumeric="3"/>
+            <column name="PERMISSIONNAME" value="MARK-COMPLETED"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCE">
+            <column name="RESOURCEID" valueNumeric="1"/>
+            <column name="RESOURCECLASSID" valueNumeric="2"/>
+            <column name="DOMAINID" valueNumeric="1"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCE">
+            <column name="RESOURCEID" valueNumeric="2"/>
+            <column name="RESOURCECLASSID" valueNumeric="3"/>
+            <column name="DOMAINID" valueNumeric="1"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCEEXTERNALID">
+            <column name="RESOURCEID" valueNumeric="1"/>
+            <column name="EXTERNALID" value="todo-creator"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCEEXTERNALID">
+            <column name="RESOURCEID" valueNumeric="2"/>
+            <column name="EXTERNALID" value="todo-creator-helper"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCEPASSWORD">
+            <column name="RESOURCEID" valueNumeric="2"/>
+            <column name="PASSWORD" value="puGPpMrGv1Id2UXbIfZ9yjDznkkpRm6BsMqpHIn/R6mD8SepcDkFjfG9B0T6AmAp"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_DOMPERM_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="SYSPERMISSIONID" valueNumeric="-303"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_DOMPERM_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="SYSPERMISSIONID" valueNumeric="-302"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_DOMPERM_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="0"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="SYSPERMISSIONID" valueNumeric="-301"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_RESCRPERM_POSTCR">
+            <column name="ACCESSORRESOURCEID" valueNumeric="1"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="POSTCREATEPERMISSIONID" valueNumeric="1"/>
+            <column name="POSTCREATEISWITHGRANT" valueNumeric="1"/>
+            <column name="ISWITHGRANT" valueNumeric="0"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_RESCRPERM_POSTCR">
+            <column name="ACCESSORRESOURCEID" valueNumeric="1"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="POSTCREATEPERMISSIONID" valueNumeric="2"/>
+            <column name="POSTCREATEISWITHGRANT" valueNumeric="0"/>
+            <column name="ISWITHGRANT" valueNumeric="0"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_RESCRPERM_POSTCR">
+            <column name="ACCESSORRESOURCEID" valueNumeric="1"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="POSTCREATEPERMISSIONID" valueNumeric="3"/>
+            <column name="POSTCREATEISWITHGRANT" valueNumeric="1"/>
+            <column name="ISWITHGRANT" valueNumeric="0"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_RESCRPERM_POSTCR_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="1"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="POSTCREATESYSPERMISSIONID" valueNumeric="-104"/>
+            <column name="POSTCREATEISWITHGRANT" valueNumeric="0"/>
+            <column name="ISWITHGRANT" valueNumeric="0"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_RESCRPERM_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="1"/>
+            <column name="ACCESSEDDOMAINID" valueNumeric="1"/>
+            <column name="RESOURCECLASSID" valueNumeric="4"/>
+            <column name="SYSPERMISSIONID" valueNumeric="-100"/>
+            <column name="ISWITHGRANT" valueNumeric="0"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+
+        <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_RESPERM_SYS">
+            <column name="ACCESSORRESOURCEID" valueNumeric="2"/>
+            <column name="ACCESSEDRESOURCEID" valueNumeric="1"/>
+            <column name="RESOURCECLASSID" valueNumeric="2"/>
+            <column name="SYSPERMISSIONID" valueNumeric="-101"/>
+            <column name="ISWITHGRANT" valueNumeric="1"/>
+            <column name="GRANTORRESOURCEID" valueNumeric="0"/>
+        </insert>
+
+        <!-- bundled liquibase change command 'alterSequence' is not compatible with HSQLDB
+             (likely because it attempts to increment instead of reset the sequence), so we have to use custom sql -->
+        <sql>
+            ALTER SEQUENCE OACC.OAC_DomainId RESTART WITH 2
+        </sql>
+        <sql>
+            ALTER SEQUENCE OACC.OAC_ResourceClassId RESTART WITH 5
+        </sql>
+        <sql>
+            ALTER SEQUENCE OACC.OAC_PermissionId RESTART WITH 4
+        </sql>
+        <sql>
+            ALTER SEQUENCE OACC.OAC_ResourceId RESTART WITH 3
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
