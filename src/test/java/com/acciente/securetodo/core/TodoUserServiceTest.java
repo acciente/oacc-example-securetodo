@@ -18,6 +18,7 @@ package com.acciente.securetodo.core;
 
 import com.acciente.oacc.AccessControlContext;
 import com.acciente.oacc.Credentials;
+import com.acciente.oacc.PasswordCredentials;
 import com.acciente.oacc.Resource;
 import com.acciente.oacc.Resources;
 import com.acciente.securetodo.AccessControlContextFactory;
@@ -30,7 +31,6 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -111,14 +111,10 @@ public class TodoUserServiceTest {
 
       assertThat(returnedTodoUser).isEqualTo(submittedTodoUser);
       assertThat(returnedTodoUser.getPassword()).isNull();
-//      verify(oacc).createResource(SecurityModel.RESOURCECLASS_USER,
-//                                  SecurityModel.DOMAIN_SECURE_TODO,
-//                                  submittedTodoUser.getEmail(),
-//                                  PasswordCredentials.newInstance(submittedTodoUser.getPassword()));  // pwdCreds don't have equals(), so can't use eq() or value directly
-      verify(oacc).createResource(eq(SecurityModel.RESOURCECLASS_USER),
-                                  eq(SecurityModel.DOMAIN_SECURE_TODO),
-                                  eq(submittedTodoUser.getEmail()),
-                                  any(Credentials.class));
+      verify(oacc).createResource(SecurityModel.RESOURCECLASS_USER,
+                                  SecurityModel.DOMAIN_SECURE_TODO,
+                                  submittedTodoUser.getEmail(),
+                                  PasswordCredentials.newInstance(submittedTodoUser.getPassword()));
       verify(accessControlContextFactory, times(2)).build();
       verify(oacc).grantResourcePermissions(createdResource,
                                             SecurityModel.RESOURCE_ROLE_TODOCREATOR,
@@ -139,14 +135,10 @@ public class TodoUserServiceTest {
       final TodoUser lowerTodoUser = new TodoUser(email_lowercase, PASSWORD_AS_CHARS);
       todoUserService.createUser(upperTodoUser);
 
-//      verify(oacc).createResource(SecurityModel.RESOURCECLASS_USER,
-//                                  SecurityModel.DOMAIN_SECURE_TODO,
-//                                  email_lowercase,
-//                                  PasswordCredentials.newInstance(upperTodoUser.getPassword()));  // pwdCreds don't have equals(), so can't use eq() or value directly
-      verify(oacc).createResource(eq(SecurityModel.RESOURCECLASS_USER),
-                                  eq(SecurityModel.DOMAIN_SECURE_TODO),
-                                  eq(email_lowercase),
-                                  any(Credentials.class));
+      verify(oacc).createResource(SecurityModel.RESOURCECLASS_USER,
+                                  SecurityModel.DOMAIN_SECURE_TODO,
+                                  email_lowercase,
+                                  PasswordCredentials.newInstance(upperTodoUser.getPassword()));
       verify(todoUserDAO).insert(lowerTodoUser);
       verify(oacc, never()).deleteResource(any(Resource.class));
    }
