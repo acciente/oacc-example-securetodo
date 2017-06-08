@@ -17,6 +17,7 @@
 package com.acciente.securetodo;
 
 import com.acciente.oacc.AccessControlContext;
+import com.acciente.oacc.encryptor.bcrypt.BCryptPasswordEncryptor;
 import com.acciente.oacc.sql.SQLAccessControlContextFactory;
 import com.acciente.oacc.sql.SQLProfile;
 import com.acciente.securetodo.health.DataSourceHealthCheck;
@@ -35,6 +36,7 @@ public class AccessControlContextFactory {
    private String sqlProfile;
 
    private ManagedDataSource dataSource;
+   private BCryptPasswordEncryptor bCryptPasswordEncryptor;
 
    @JsonProperty
    public String getSchemaName() {
@@ -58,6 +60,7 @@ public class AccessControlContextFactory {
 
    public void initialize(Environment environment, PooledDataSourceFactory dataSourceFactory, String name) {
       dataSource = dataSourceFactory.build(environment.metrics(), name);
+      bCryptPasswordEncryptor = BCryptPasswordEncryptor.newInstance(12);
       environment.lifecycle().manage(dataSource);
       environment.healthChecks().register(name,
                                           new DataSourceHealthCheck(environment.getHealthCheckExecutorService(),
@@ -70,6 +73,7 @@ public class AccessControlContextFactory {
    public AccessControlContext build() {
       return SQLAccessControlContextFactory.getAccessControlContext(dataSource,
                                                                     getSchemaName(),
-                                                                    SQLProfile.valueOf(getSqlProfile()));
+                                                                    SQLProfile.valueOf(getSqlProfile()),
+                                                                    bCryptPasswordEncryptor);
    }
 }

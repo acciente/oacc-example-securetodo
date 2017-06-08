@@ -231,7 +231,7 @@ Using OACC to create a user resource from within our service looks like this:
    }
 ```
 
-Creating a user resource is essentially just a single call to OACC's `createResource()` method, for which we specify the resource class and domain in which our new resource should be created. For simplicity, the names of our domains and resource classes are already defined as String constants in a class called `SecurityModel`, to make them reusable throughout our code. In addition to domain and resource class, we provide an _external identifier_, namely the user's unique email address, to be able to reference that resource later on. Lastly, we provide the user's password as credentials, because resources of class `user` are _authenticatable_. OACC will handle the secure storage of password-based credentials for us with its default built-in authentication provider, using salting, binding and iterative one-way hashing.
+Creating a user resource is essentially just a single call to OACC's `createResource()` method, for which we specify the resource class and domain in which our new resource should be created. For simplicity, the names of our domains and resource classes are already defined as String constants in a class called `SecurityModel`, to make them reusable throughout our code. In addition to domain and resource class, we provide an _external identifier_, namely the user's unique email address, to be able to reference that resource later on. Lastly, we provide the user's password as credentials, because resources of class `user` are _authenticatable_. OACC will handle the secure storage of password-based credentials for us with its default built-in authentication provider, using salting, binding and iterative one-way hashing with bcrypt.
 
 The rest of the `createUserResource()` method shown above just translates an OACC exception message for duplicate resources into a more appropriate domain-specific message stating that a user with that email address already exists.
 
@@ -273,7 +273,7 @@ Give it a try and run the example below!
 To build the Dropwizard application jar, run the maven `mvn package` command from the sample app directory (or use your IDE's equivalent). Then start the Dropwizard application with the following command:
 
 ```bash
-java -jar target/secure-todo-1.0.0-SNAPSHOT.jar server secure-todo.yml
+java -jar target/secure-todo-1.0.1-SNAPSHOT.jar server secure-todo.yml
 ```
 
 POST a new SecureTodo user using the `curl` command below (or use a tool of your choice):

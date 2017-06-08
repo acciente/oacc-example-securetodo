@@ -78,7 +78,7 @@
 
         <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_RESOURCEPASSWORD">
             <column name="RESOURCEID" valueNumeric="2"/>
-            <column name="PASSWORD" value="puGPpMrGv1Id2UXbIfZ9yjDznkkpRm6BsMqpHIn/R6mD8SepcDkFjfG9B0T6AmAp"/>
+            <column name="PASSWORD" value="bcrypt:$2a$12$siJOKyP4oBHDBvWGTm3b9.IIWl6R2yt/asHfyQNkdKD3WDXNH4myG"/>
         </insert>
 
         <insert catalogName="PUBLIC" schemaName="OACC" tableName="OAC_GRANT_DOMPERM_SYS">

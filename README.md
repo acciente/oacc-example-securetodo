@@ -30,7 +30,7 @@ The SecureTodo sample application is compatible with Java™ SE 8 (Java™ versi
 ### How to start the SecureTodo application
 
 1. Run `mvn clean package` to package the application
-2. Start the application with `java -jar target/secure-todo-1.0.0-SNAPSHOT.jar server secure-todo.yml`
+2. Start the application with `java -jar target/secure-todo-1.0.1-SNAPSHOT.jar server secure-todo.yml`
 
 ### curl API commands
 

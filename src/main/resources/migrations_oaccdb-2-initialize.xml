@@ -30,7 +30,7 @@
 
         <insert schemaName="OACC" tableName="OAC_RESOURCEPASSWORD">
             <column name="RESOURCEID" valueNumeric="0"/>
-            <column name="PASSWORD" value="vsZvKFBTbE58B+HiKQ4Z5BmCn2LbD2stbRLW1YYVfsbdU++QKyopTqOlJFXxAH3J"/>
+            <column name="PASSWORD" value="bcrypt:$2a$14$kkqO2KrXBIKxn2gl8YDIz.SNpdNxPaNVPvYNA/.Ibo57VvbNPsFSC"/>
         </insert>
 
         <insert schemaName="OACC" tableName="OAC_GRANT_DOMCRPERM_POSTCR_SYS">
